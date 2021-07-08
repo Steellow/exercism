@@ -1,10 +1,14 @@
+const isUpperCase = str => /^[A-Z]+$/.test(str.replace(/[^a-zA-Z]+/g, ''));
+const isQuestion = str => str.trim().slice(-1) === '?';
+const isEmpty = str => str.trim() === '';
+
 export const hey = message =>
-  message === 'How are you?'
-    ? 'Sure.'
-    : message === message.toUpperCase()
-    ? 'Whoa, chill out!'
-    : message.includes('?')
+  isUpperCase(message) && isQuestion(message)
     ? "Calm down, I know what I'm doing!"
-    : message === ''
+    : isUpperCase(message)
+    ? 'Whoa, chill out!'
+    : isQuestion(message)
+    ? 'Sure.'
+    : isEmpty(message)
     ? 'Fine. Be that way!'
     : 'Whatever.';
